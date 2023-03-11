@@ -9,12 +9,15 @@
       :items="items"
       item-value="count"
       >
-      <div class="v-container">
+      <div class="v-container" id="commandIndex">
         <div class="de">
         <h3>{{ $store.state.command[0].name }}</h3>
         <v-icon size="25" icon="mdi-bottle-wine"></v-icon>
       </div>
-      <p>{{ $store.state.command[0].prix }} Ar</p>
+      <div style="display: flex; justify-content: space-between;">
+        <p>{{ $store.state.command[0].prix }} Ar</p>
+        <v-btn size="10" variant="text" icon="mdi-close"></v-btn>
+      </div>
       </div>
     </v-list>
       
@@ -36,14 +39,11 @@ import { mapState } from 'vuex';
             },
         ],
     }),
+    methods: {},
     computed: mapState(
       {
         prix: state => state.prix
       }),
-      commandy()
-      {
-
-      }
     }
 </script>
 

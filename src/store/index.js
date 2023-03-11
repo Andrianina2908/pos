@@ -1,13 +1,11 @@
+import axios from "axios"
 import { createStore } from "vuex"
 
 const store = createStore({
     state:{
-        command: [
-            {
-                name: 'Merlot - Vin Rouge',
-                prix: 35000
-            }
-        ]
+        commands: [],
+        command: null,
+        cart: []
     },
     getters:
     {
@@ -16,9 +14,26 @@ const store = createStore({
             return state.command
         }
     },
-    mutations:{},
-    actions:{},
+    mutations:
+    {
+        ADD_TO_CART: (state, {product, quantity}) => 
+        {
+            state.cart.push({
+                product,
+                quantity
+            })
+        }
+    },
+
+    actions:
+    {
+        addProductToCart: ({commit}, {product, quantity}) => {
+            commit('ADD_TO_CART', {product, quantity})
+        }
+    },
+
     modules:{},
+
 })
 
 export default store

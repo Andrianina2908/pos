@@ -73,10 +73,10 @@
                         </div>
 
                         <div style="display: flex; justify-content: center;">
-                          <v-btn color="primary" variant="outlined" prepend-icon="mdi-content-save" style="margin-right: 5px">Confirmer</v-btn>
+                          <v-btn @click="addToCart" color="primary" variant="outlined" prepend-icon="mdi-content-save" style="margin-right: 5px">Confirmer</v-btn>
 
                           <v-btn @click="adding" color="success" variant="outlined" prepend-icon="mdi-plus" style="margin-right: 5px">Ajouter</v-btn>
-                          
+
                           <v-btn @click="tsyadding" color="warning" variant="outlined" prepend-icon="mdi-backspace">Effacer</v-btn>
                         </div>
                     </div>
@@ -96,6 +96,7 @@
 <script>
     export default
     {
+      props: ["product"],
         data(){
             return{
                 qun: 'Quantité',
@@ -129,9 +130,13 @@
                   this.qun = this.quantitys
                 }else {this.qun = this.quantity}
             },
-            acceptEvent()
+            addToCart()
             {
-              // this.qun
+              this.$store.dispatch("addProductToCart", 
+              {
+                product: this.product,
+                quantity: 1
+              })
             }
         }
     }
